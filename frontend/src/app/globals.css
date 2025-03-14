@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fefcfb;
+  --foreground: #1b1b1b;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1b1b1b;
+    --foreground: #fefcfb;
+  }
+} */
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  /* @apply dark:backdrop-sepia-[.66]; */
+}
+
+.link {
+  @apply text-center;
+  @apply text-link;
+  @apply hover:bg-gray-300 hover:text-gray-900;
+  @apply rounded-md;
+  @apply p-1;
+}
+
+.button {
+  @apply text-center;
+  @apply text-gray-900;
+  @apply bg-gray-300;
+  @apply hover:bg-highlight;
+  @apply p-2 rounded-full;
+  @apply font-normal tracking-tight;
+}
+
+p {
+  @apply my-2 md:my-4;
+}
