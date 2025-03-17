@@ -21,7 +21,7 @@ $ docker compose up --build
 
 The easiest way to manage running and stopping the containers is with Docker Desktop.
 
-![Screenshot of Docker Desktop and this project's container, with its two services, "client" and "server."](./assets/docker-desktop-containers.png)
+![Screenshot of Docker Desktop and this project's container, with its two services, "client" and "server."](./img/docker-desktop-containers.png)
 
 ## Develop the components
 
