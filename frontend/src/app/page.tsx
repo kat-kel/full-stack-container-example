@@ -1,5 +1,5 @@
 'use client'
-import { Results, Joke } from '../components/results';
+import { Results, Singer } from '../components/results';
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
@@ -11,7 +11,7 @@ const App = () => {
   const [url, setUrl] = useState(GoodURL)
 
   // Start with no data loaded, no errors, and loading
-  const [data, setData] = useState<Joke[]>([]);
+  const [data, setData] = useState<Singer[]>([]);
   const [error, setError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 

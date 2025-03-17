@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.constants import JOKE_ARRAY
+from app.constants import DATA_ARRAY
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -17,4 +17,4 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return JOKE_ARRAY
+    return DATA_ARRAY
