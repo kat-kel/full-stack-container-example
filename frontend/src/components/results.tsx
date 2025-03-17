@@ -8,7 +8,7 @@ const Results = (
     {error: boolean, data: null  | Joke[]}
 ) => {
     if (error === true) {
-        let message = "Sorry, the server is not responding."
+        let message = "Sorry, the backend server is not responding."
         return (
             <div
               className={`${

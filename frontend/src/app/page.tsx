@@ -39,7 +39,7 @@ const App = () => {
   return (
     <>
       <nav className='bg-red-50 py-4'>
-        <p className='font-light text-4xl text-red-400  px-20 '>Frontend</p>
+        <p className='font-light text-4xl text-red-400  px-20 '>Frontend App</p>
       </nav>
       <main className='px-6 py-10 bg-red-100'>
 
