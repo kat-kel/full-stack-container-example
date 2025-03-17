@@ -1,7 +1,15 @@
 # Containerized Full-Stack Example
 
-This is a basic example of how to structure and set up the docker files for a full-stack web application.
-I modified this [tutorial](https://dev.to/fizy_hector/-containerizing-your-full-stack-node-app-using-docker-compose-4lnk), changing the frontend to Next.Js and changing the backend from Express in Node.js to FastAPI in Python.
+This is a basic example of how to structure 
+a (very simple) full-stack web application 
+and (more to the point) set up the docker 
+files to containerize it.
+The goal is to create an image for the full
+web application, including the FastAPI 
+backend (Python) and the NextJS frontend 
+(TypeScript), that can be built and deployed
+on any machine. Docker is a great solution 
+to this challenge.
 
 In [`backend/`](./backend/), you'll build the FastAPI server.
 For this example, the server has only one endpoint, 
