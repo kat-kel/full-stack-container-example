@@ -16,24 +16,24 @@ Run the backend with `fastapi run app/main.py --port 8000`.
 $ fastapi run app/main.py --port 8000
 
    FastAPI   Starting production server 🚀
- 
-             Searching for package file structure 
+
+             Searching for package file structure
              from directories with __init__.py files
-             Importing from 
+             Importing from
              full-stack-container-example/backend
- 
+
     module   📁 app
              ├── 🐍 __init__.py
              └── 🐍 main.py
- 
-      code   Importing the FastAPI app object from 
+
+      code   Importing the FastAPI app object from
              the module with the following code:
- 
+
              from app.main import app
- 
+
        app   Using import string: app.main:app
- 
+
     server   Server started at http://0.0.0.0:8000
-    server   Documentation at 
+    server   Documentation at
              http://0.0.0.0:8000/docs
 ```
