@@ -1,11 +1,11 @@
 services:
   frontend:
     build: ./frontend
-    container_name: hackathon_client
+    container_name: client
     ports:
     - "3000:3000"
   backend:
     build: ./backend
-    container_name: hackathon_server
+    container_name: server
     ports:
     - "8000:8000"
