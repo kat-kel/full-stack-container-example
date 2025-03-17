@@ -1,63 +1,68 @@
 'use client'
+import { Results, Joke } from '../components/results';
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
-function App() {
-  const [error, setError] = useState(false);
-  const [jokes, setJokes] = useState([]);
+const GoodURL = 'http://localhost:8000'
 
+const App = () => {
+
+  // Load the page with the correct API endpoint
+  const [url, setUrl] = useState(GoodURL)
+
+  // Start with no data loaded, no errors, and loading
+  const [data, setData] = useState<Joke[]>([]);
+  const [error, setError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Trigger the effect when the URL changes
   useEffect(() => {
     const fetchData = async () => {
+      setError(false);
+      setIsLoading(true);
+      // Try getting data from the API endpoint
       try {
-        const response = await fetch("http://localhost:8000");
-        if (response.ok) {
-          const result = await response.json();
-          console.log(result)
-          setJokes(result);
-          setError(true);
-        } else {
-          console.error("Error fetching data:", response.statusText);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+        const result = await axios(url);
+        setData(result.data);
       }
+      // If there was a problem, set error to True
+      catch (error) {
+        setError(true);
+      }
+      // When finished, set loading to False
+      setIsLoading(false);
     };
+    // Rerun fetchData when the effect is triggered
     fetchData();
-  }, []);
+  }, [url]);
 
   return (
     <>
       <nav className='bg-red-50 py-4'>
-        <p className='font-light text-4xl text-red-400  px-20 '>jokesVille</p>
+        <p className='font-light text-4xl text-red-400  px-20 '>Frontend</p>
       </nav>
-      <main className='flex justify-center items-center px-6 py-10 bg-red-100'>
-        {!error ? (
-          <div
-            className={`${
-              error ? "flex" : "hidden"
-            } h-full justify-center items-center text-center`}
-          >
-            <p className='text-xl font-medium'>
-              So Sorry we could not find you jokes
-              <span role='img' aria-label='dissapointed' className='text-4xl'>
-                &#128542;
-              </span>
-            </p>
-          </div>
-        ) : (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-x-4 gap-y-3 text-center my-10 py-5'>
-            {jokes.map((joke) => (
-              <div
-                key={joke.id}
-                className=' h-40 flex flex-col justify-center items-center bg-gray-50 rounded-md py-16 px-20'
-              >
-                <span role='img' aria-label='laugh'>
-                  &#128514;
-                </span>
-                <p className='text-gray-500'>{joke.joke}</p>
-              </div>
-            ))}
-          </div>
-        )}
+      <main className='px-6 py-10 bg-red-100'>
+
+        {/* For testing purposes */}
+        <div className="grid justify-center gap-4">
+          <p className="items-center">{url}</p>
+          <button className="outline rounded items-center"
+            onClick={() => setUrl(GoodURL)}>Good API endpoint</button>
+          <button className="outline rounded items-center"
+            onClick={() => setUrl('http://localhost:8001')}>Bad API endpoint</button>
+        </div>
+
+        {/* Results */}
+        <div className='flex justify-center items-center'>
+
+          {/* If the results are loading, show "Loading..." */}
+          {isLoading ? (
+            <div className='flex items-center h-20'>Loading ...</div>
+          ) : (
+            // When the results are ready (loading is false), render the component
+            < Results error={error} data={data} />
+          )}
+        </div>
       </main>
     </>
   );
