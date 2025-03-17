@@ -1,13 +1,23 @@
 # Containerized Full-Stack Example
 
-This is a bare-bones example of how to structure and set up the docker files for a full-stack web application.
+This is a basic example of how to structure and set up the docker files for a full-stack web application.
 I modified this [tutorial](https://dev.to/fizy_hector/-containerizing-your-full-stack-node-app-using-docker-compose-4lnk), changing the frontend to Next.Js and changing the backend from Express in Node.js to FastAPI in Python.
 
-In [`backend/`](./backend/), you'll build the FastAPI server that serves the data. In this case, that's information about historic opera singers. The backend sends the data through port `8000`.
+In [`backend/`](./backend/), you'll build the FastAPI server.
+For this example, the server has only one endpoint, 
+which serves data about historic opera singers. 
+The backend makes the data available through port `8000`.
 
 In [`frontend/`](./frontend/), you'll build the TypeScript frontend that requests information from the backend (port `8000`) and formats it on the page.
 
-In this example app, the frontend has buttons that change the URI from which the frontend app requests the data. When the URI is correct (port `8000`), the data will be displayed. When the URI is incorrect (i.e. `8001`), the error is caught and explained in a message on the screen.
+To demonstrate how the frontend fetches data
+from the backend, I've displayed on the screen 
+the API endpoint that the frontend is trying to access.
+When the URI is correct (port `8000`), the 
+data is displayed. But when the frontend is 
+trying to access the backend through the wrong 
+port (port `8001`), the error is caught and 
+a message explaining the problem is shown.
 
 ![Gif of screen recording of front end.](img/frontend.gif)
 
