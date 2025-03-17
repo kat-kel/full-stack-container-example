@@ -14,6 +14,27 @@ fastapi run app/main.py --port 8000
 
 In [`frontend/`](./frontend/), you'll build the TypeScript frontend that requests information from the backend (port `8000`) and renders it on the page.
 
+```js
+const url = 'http://localhost:8000';
+
+const fetchData = async () => {
+      // Start with loading and no errors
+      setIsLoading(true);
+      setError(false);
+      // Try getting data from the API endpoint
+      try {
+        const result = await axios(url);
+        setData(result.data);
+      }
+      // If there was a problem, set error to True
+      catch (error) {
+        setError(true);
+      }
+      // When finished, set loading to False
+      setIsLoading(false);
+    };
+```
+
 To demonstrate how the frontend fetches data
 from the backend, I've displayed on the screen 
 the API endpoint that the frontend is trying to access.
