@@ -60,7 +60,7 @@ $ docker compose up --build
 [+] Building 160.8s (22/22) FINISHED                         docker:desktop-linux
 ```
 
-## Run the contaiers
+## Run the containers
 
 The easiest way to manage running and stopping the containers is with Docker Desktop.
 
