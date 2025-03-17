@@ -8,7 +8,11 @@ For this example, the server has only one endpoint,
 which serves data about historic opera singers. 
 The backend makes the data available through port `8000`.
 
-In [`frontend/`](./frontend/), you'll build the TypeScript frontend that requests information from the backend (port `8000`) and formats it on the page.
+```shell
+fastapi run app/main.py --port 8000
+```
+
+In [`frontend/`](./frontend/), you'll build the TypeScript frontend that requests information from the backend (port `8000`) and renders it on the page.
 
 To demonstrate how the frontend fetches data
 from the backend, I've displayed on the screen 
