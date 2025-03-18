@@ -1,5 +1,7 @@
 # Backend
 
+Develop this template.
+
 ## First-time set-up
 
 1. Create a virtual Python environment with a version of Python 3.12 or greater.
@@ -8,12 +10,12 @@
 
 3. Install the backend's requirements with `pip install -r requirements.txt`
 
-## Run
+## Run development server
 
-Run the backend with `fastapi run app/main.py --port 8000`.
+Run the backend with `fastapi dev app/main.py --port 8000`.
 
 ```console
-$ fastapi run app/main.py --port 8000
+$ fastapi dev app/main.py --port 8000
 
    FastAPI   Starting production server 🚀
 

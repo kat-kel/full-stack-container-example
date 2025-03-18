@@ -1,99 +1,207 @@
 # Containerized Full-Stack Example
 
-This is a basic example of how to structure 
-a (very simple) full-stack web application 
-and (more to the point) set up the docker 
+This is a basic example of how to structure
+a (very simple) full-stack web application
+and (more to the point) set up the docker
 files to containerize it.
-The goal is to create an image for the full
-web application, including the FastAPI 
-backend (Python) and the NextJS frontend 
-(TypeScript), that can be built and deployed
-on any machine. Docker is a great solution 
-to this challenge.
 
-In [`backend/`](./backend/), you'll build the FastAPI server.
-For this example, the server has only one endpoint, 
-which serves data about historic opera singers. 
-The backend makes the data available through port `8000`.
+## Table of Contents
+- [Explanation](#explanation)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [How to run Docker containers](#use-1-docker-containers)
+  - [Code templates](#use-2-backend--frontend)
+    - [Building backend with `FastAPI`](#backend)
+    - [Building frontend with `React`](#frontend)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Explanation
+
+Why would I use this example?
+
+- You have data that you need people to be able to access. For the more technical users, you can simply set up an API (see [`backend/`](./backend/)), deploy it, and let the technical users call the API. For a more general audience, you'll want to set up a web interface (see [`frontend/`](./frontend/)) that communicates with your API based on user-friendly queries, page navigation, user input, etc. The latter requires both the backend and frontend, aka a "full-stack" web application.
+
+- You need to deploy your full-stack web application from a remote server and/or you want people to be able to download it and create their own deployments. This is best managed with a "container," which builds all the necessary dependencies, environment variables, etc. for software written in any programming language into a convenient package. In this example, we use `Docker` to create these containers.
+
+This example models 3 things:
+
+1. A RESTful API [backend](./backend/) written in `Python`, using `FastAPI`.
+
+2. A [frontend](./frontend/) written in `TypeScript`, using `React` and `NextJS`.
+
+3. `Docker` files for building both ends and the whole, full-stack application.
+
+    1. Backend blueprint: [`backend/Dockerfile`](./backend/Dockerfile)
+
+    2. Frontend blueprint: [`frontend/Dockerfile`](./frontend/Dockerfile)
+
+    3. Full-stack blueprint: [`docker-compose.yml`](./docker-compose.yml)
+
+
+## Installation
+
+### Step 1. Set up Docker
+
+The easiest way to explore this example is to download and install [`Docker Desktop`](https://www.docker.com/products/docker-desktop/), which should also install `Docker Compose` as a command-line tool.
+
+> [`Docker Compose`](https://github.com/docker/compose) is licensed under Apache-2.0 (open-source), and `Docker Desktop` is free to download and use. `Docker Desktop` allows you to login with a `Docker` account, but this is not necessary.
+
+### Step 2. Download codebase
+
+Download this example using `git clone`.
+
+> If it's not already installed, first [download `git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 ```shell
-fastapi run app/main.py --port 8000
+git clone https://github.com/kat-kel/full-stack-container-example.git
 ```
 
-In [`frontend/`](./frontend/), you'll build the TypeScript frontend that requests information from the backend (port `8000`) and renders it on the page.
+### Step 3. Build the containers
 
-```js
-const url = 'http://localhost:8000';
+To build the containers, you must satisfy 2 things:
 
-const fetchData = async () => {
-      // Start with loading and no errors
-      setIsLoading(true);
-      setError(false);
-      // Try getting data from the API endpoint
-      try {
-        const result = await axios(url);
-        setData(result.data);
-      }
-      // If there was a problem, set error to True
-      catch (error) {
-        setError(true);
-      }
-      // When finished, set loading to False
-      setIsLoading(false);
-    };
+1.  Make sure that `docker` is running. If you're using `Docker Desktop`, simply open the application. If `docker` is not running, you'll see the following error message when trying to build and/or run the container:
+
+```console
+$ docker compose up --build
+unable to get image 'full-stack-container-example-frontend':
+Cannot connect to the Docker daemon at unix:///home/user/.docker/desktop/docker.sock.
+Is the docker daemon running?
 ```
 
-To demonstrate how the frontend fetches data
-from the backend, I've displayed on the screen 
-the API endpoint that the frontend is trying to access.
-When the URI is correct (port `8000`), the 
-data is displayed. But when the frontend is 
-trying to access the backend through the wrong 
-port (port `8001`), the error is caught and 
-a message explaining the problem is shown.
+2. Have your command line located at the root of this codebase, aka where the `docker-compose.yml` file is.
 
-![Gif of screen recording of front end.](img/frontend.gif)
-
-## Build the container image
-
-Install Docker Desktop, which should also install the `docker` CLI on your system.
-
-To install and start the whole container (backend and frontend), use `docker`.
+Finally, build and begin running the full-stack app's container using `Docker Compose`.
 
 ```console
 $ docker compose up --build
 [+] Running 0/0
-[+] Running 0/2end   Building                                0.1s
- ⠙ Service backend   Building                                0.2s
-[+] Building 160.8s (22/22) FINISHED                         docker:desktop-linux
+[+] Running 0/2tend  Building                                                   0.1s
+ ⠹ Service frontend  Building                                                   0.3s
+[+] Building 60.7s (22/22) FINISHED                             docker:desktop-linux
+...
+ ✔ Service frontend                              Built                         60.8s
+ ✔ Service backend                               Built                          2.1s
+ ✔ Network full-stack-container-example_default  Created                        0.1s
+ ✔ Container client                              Created                        1.1s
+ ✔ Container server                              Created                        1.1s
+Attaching to client, server
+client  |
+client  | > frontend@0.1.0 dev
+client  | > next dev
+client  |
+server  |
+server  |    FastAPI   Starting production server
 ```
 
-## Run the containers
+> It's normal for the build process to take serveral minutes. This example isn't designed to also show how to optimise Docker build times.
 
-The easiest way to manage running and stopping the containers is with Docker Desktop.
+## Usage
+
+This example serves 2 main uses:
+
+1. Running and stopping `Docker` images.
+
+2. Templates for a very backend REST API and a simple React frontend.
+
+### Use 1: Docker containers
+
+`Docker Desktop` is the easiest way to manage running and stopping the built containers.
 
 ![Screenshot of Docker Desktop and this project's container, with its two services, "client" and "server."](./img/docker-desktop-containers.png)
 
-## Develop the components
 
-When developping the project, run the frontend and backend separately in their respective runtime environments.
+Alternatively, can run both containers (client, server) from the root of the repository (where `docker-compose.yml` is) with the command `docker compose up` in the terminal.
 
-### Backend
-
-In a virtual Python environment, with the Python dependencies installed, run the command that's in the docker file.
-
-```shell
-fastapi run app/main.py --port 8000
+```console
+$ docker compose up
+[+] Running 2/0
+ ✔ Container server  Created                                                    0.0s
+ ✔ Container client  Created                                                    0.0s
+Attaching to client, server
+client  |
+client  | > frontend@0.1.0 dev
+client  | > next dev
+client  |
+server  |
+server  |    FastAPI   Starting production server
 ```
 
-See the [README](./backend/README.md).
+In the same terminal from which you started the containers with `docker compose up`, stop both of them by pressing `Ctrl` and `C` together.
 
-### Frontend
-
-Having already installed the node modules, run the command that's in the docker file.
-
-```shell
-npm run dev
+```console
+Gracefully stopping... (press Ctrl+C again to force)
+[+] Stopping 2/2
+ ✔ Container server  Stopped                                                    0.4s
+ ✔ Container client  Stopped                                                   10.2s
 ```
 
-See the [README](./frontend/README.md).
+### Use 2: Backend / Frontend
+
+#### Backend
+
+The backend's REST API is built with [`FastAPI`](https://fastapi.tiangolo.com/) in `Python`.
+
+To begin developping the template and adding your own [endpoints](https://fastapi.tiangolo.com/tutorial/path-params/), data sources, etc., you'll first need to set up a virtual `Python` environment using version 3.12 or greater. Then, install the backend's requirements with `pip install -r requirements.txt`.
+
+For developping purposes, run the backend separately in your virtual environment. From inside the `backend/` directory, run the following command:
+
+```console
+$ fastapi dev app/main.py --port 8000
+
+   FastAPI   Starting development server 🚀
+
+             Searching for package file structure from directories with __init__.py
+             files
+             Importing from /home/user/Dev/full-stack-container-example/backend
+
+    module   📁 app
+             ├── 🐍 __init__.py
+             └── 🐍 main.py
+
+      code   Importing the FastAPI app object from the module with the following
+             code:
+
+             from app.main import app
+
+       app   Using import string: app.main:app
+
+    server   Server started at http://127.0.0.1:8000
+    server   Documentation at http://127.0.0.1:8000/docs
+
+```
+
+By running your backend app with the development server (`fastapi dev`), changes you make and save in the Python modules ([`app/`](./backend/app/)) will be applied as the application automatically reloads.
+
+#### Frontend
+
+##### Installation
+
+The frontend is built in [`React`](https://react.dev/) with a [`Next.js`](https://nextjs.org/) framework.
+
+To begin developping the components, first install the `Node` modules. Contrary to Python, you don't need a virtual environment to do this because they're installed locally in the `fontend/` directory.
+
+In order to install the modules, you must have the following installed globally on your system:
+
+1. [`Node.js`](https://nodejs.org/en), version 20 or greater.
+
+2. [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm?ref=meilisearch-blog), version 10 or greater.
+
+> Note: The beauty of containers / Docker is that all this stuff about packages and dependencies is handled for you! But for actually developping the thing you'll containerize, you'll need to set things up yourself.
+
+Finally, from inside the [`frontend`](./frontend/) directory, where the [`package.json`](./frontend/package.json) file is, install the frontend's `node` modules with the following command:
+
+```shell
+$ npm install
+```
+
+##### Development
+
+This frontend template was built with the [`Next.js`](https://nextjs.org/) framework, specifically using `App Router`. [Read here](https://nextjs.org/docs/app/getting-started/project-structure) about how to structure and develop a project with this architecture.
+
+## Contributing
+
+This example is meant to remain light-weight and minimal, showcasing primarily `Docker Compose`, `FastAPI`, and `React`. For this reason, please don't contribute enhancements that add complexity to the example.
+
+However, if you are installing the example and discover an error on your machine, please open an issue that describes your set-up and the problem. I also welcome your input on how to make more explicit, standardised, and/or cleaner the code in the frontend and backend.
