@@ -143,33 +143,33 @@ Gracefully stopping... (press Ctrl+C again to force)
 
 The backend's REST API is built with [`FastAPI`](https://fastapi.tiangolo.com/) in `Python`.
 
-To begin developping the template and adding your own [endpoints](https://fastapi.tiangolo.com/tutorial/path-params/), data sources, etc., you'll first need to set up a virtual `Python` environment using version 3.12 or greater. Then, install the backend's requirements with `pip install -r requirements.txt`.
+To begin developping the template and adding your own [endpoints](https://fastapi.tiangolo.com/tutorial/path-params/), data sources, etc., you'll first need to set up a virtual `Python` environment using version 3.12 or greater. Then, install the backend as a package with `pip install -e .`.
 
 For developping purposes, run the backend separately in your virtual environment. From inside the `backend/` directory, run the following command:
 
 ```console
-$ fastapi dev app/main.py --port 8000
+$ fastapi dev src/api/main.py --port 8000
 
    FastAPI   Starting development server 🚀
 
              Searching for package file structure from directories with __init__.py
              files
-             Importing from /home/user/Dev/full-stack-container-example/backend
+             Importing from
+             /home/user/Dev/full-stack-container-example/backend/src
 
-    module   📁 app
+    module   📁 api
              ├── 🐍 __init__.py
              └── 🐍 main.py
 
       code   Importing the FastAPI app object from the module with the following
              code:
 
-             from app.main import app
+             from api.main import app
 
-       app   Using import string: app.main:app
+       app   Using import string: api.main:app
 
     server   Server started at http://127.0.0.1:8000
     server   Documentation at http://127.0.0.1:8000/docs
-
 ```
 
 By running your backend app with the development server (`fastapi dev`), changes you make and save in the Python modules ([`app/`](./backend/app/)) will be applied as the application automatically reloads.

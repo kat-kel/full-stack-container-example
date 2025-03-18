@@ -8,34 +8,33 @@ Develop this template.
 
 2. Activate the environment.
 
-3. Install the backend's requirements with `pip install -r requirements.txt`
+3. Install the backend's requirements with `pip install -e .`
 
 ## Run development server
 
 Run the backend with `fastapi dev app/main.py --port 8000`.
 
 ```console
-$ fastapi dev app/main.py --port 8000
+$ fastapi dev src/api/main.py --port 8000
 
-   FastAPI   Starting production server 🚀
+   FastAPI   Starting development server 🚀
 
-             Searching for package file structure
-             from directories with __init__.py files
+             Searching for package file structure from directories with __init__.py
+             files
              Importing from
-             full-stack-container-example/backend
+             /home/user/Dev/full-stack-container-example/backend/src
 
-    module   📁 app
+    module   📁 api
              ├── 🐍 __init__.py
              └── 🐍 main.py
 
-      code   Importing the FastAPI app object from
-             the module with the following code:
+      code   Importing the FastAPI app object from the module with the following
+             code:
 
-             from app.main import app
+             from api.main import app
 
-       app   Using import string: app.main:app
+       app   Using import string: api.main:app
 
-    server   Server started at http://0.0.0.0:8000
-    server   Documentation at
-             http://0.0.0.0:8000/docs
+    server   Server started at http://127.0.0.1:8000
+    server   Documentation at http://127.0.0.1:8000/docs
 ```

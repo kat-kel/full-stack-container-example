@@ -1,11 +1,16 @@
 from fastapi import FastAPI
-from app.constants import DATA_ARRAY
 from fastapi.middleware.cors import CORSMiddleware
 
+from api.database import DB
+
+# Connect to an in-memory DuckDB database
+db = DB()
+
+# Create an instance of FastAPI
 app = FastAPI()
 
+# Prepare app for communicating with frontend
 origins = ["*"]
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -16,5 +21,6 @@ app.add_middleware(
 
 
 @app.get("/")
-def read_root():
-    return DATA_ARRAY
+async def read_root():
+    data = db.get_dict_array(table_name="singers")
+    return data
