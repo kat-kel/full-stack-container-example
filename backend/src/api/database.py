@@ -13,4 +13,4 @@ class DB:
     def get_dict_array(self, table_name: str) -> list[dict]:
         rel = self.conn.sql("SELECT * FROM {}".format(table_name))
         cols = rel.columns
-        return [{k: v} for k, v in zip(cols, rel.fetchall())]
+        return [{k: v for k, v in zip(cols, row)} for row in rel.fetchall()]
