@@ -101,9 +101,9 @@ server  |    FastAPI   Starting production server
 
 This example serves 2 main uses:
 
-1. Running and stopping `Docker` images.
+1. Running and stopping `Docker` containers.
 
-2. Templates for a very backend REST API and a simple React frontend.
+2. Templates for a simple backend REST API and a simple React frontend.
 
 ### Use 1: Docker containers
 
