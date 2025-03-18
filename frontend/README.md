@@ -1,5 +1,14 @@
 # Frontend
 
+This template comes with only one route: `http://localhost:3000/`, aka the index.
+
+When the page loads, it tries to load data from the API template's only endpoint, `http://localhost:8000/`. If you're running this frontend while also running the backend, the page should load correctly and you should see the data rendered in a grid.
+
+To demonstrate how this template is requesting data from the backend, and what happens if there's a problem, you can change the URI to make it incorrect, i.e. `http://localhost:8001/`. Thanks to a `useEffect` hook, which is fetching the data, the changed URI is detected, the page is reloaded, and you can observe how this template handles the error.
+
+![Gif of screenshot of index page](../img/frontend.gif)
+
+
 ## First-time set-up
 
 Install the node modules with `npm install`.

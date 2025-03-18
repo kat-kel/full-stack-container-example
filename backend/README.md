@@ -1,6 +1,12 @@
 # Backend
 
-Develop this template.
+This template comes with a data file in [`data/`](data/singers.csv) and a Python package in [`src/api`](./src/api/), which is installed via the [`pyproject.toml`](./pyproject.toml) file.
+
+The data is loaded into a `DuckDB` database connection when the application starts up, as seen in the [`src/api/main.py`](./src/api/main.py) module. The data is transformed into a table named "singers," and each row represents metadata about a historic opera singer.
+
+This template's only route is `/`, from which it serves all the data it loaded into the table "singers".
+
+Begin developping by changing the data, adding more routes, etc.
 
 ## First-time set-up
 
