@@ -26,9 +26,9 @@ Why would I use this example?
 
 This example models 3 things:
 
-1. A RESTful API [backend](./backend/) written in `Python`, using `FastAPI`.
+1. A `FastAPI` [backend](./backend/) written in `Python`.
 
-2. A [frontend](./frontend/) written in `TypeScript`, using `React` and `NextJS`.
+2. A `React` [frontend](./frontend/) written in `TypeScript` and using `NextJS`.
 
 3. `Docker` files for building both ends and the whole, full-stack application.
 
@@ -172,7 +172,7 @@ $ fastapi dev src/api/main.py --port 8000
     server   Documentation at http://127.0.0.1:8000/docs
 ```
 
-By running your backend app with the development server (`fastapi dev`), changes you make and save in the Python modules ([`app/`](./backend/app/)) will be applied as the application automatically reloads.
+By running your backend app with the development server (`fastapi dev`), changes you make and save in the Python modules ([`src/api/`](./backend/src/api/)) will be applied as the application automatically reloads.
 
 #### Frontend
 
@@ -205,3 +205,7 @@ This frontend template was built with the [`Next.js`](https://nextjs.org/) frame
 This example is meant to remain light-weight and minimal, showcasing primarily `Docker Compose`, `FastAPI`, and `React`. For this reason, please don't contribute enhancements that add complexity to the example.
 
 However, if you are installing the example and discover an error on your machine, please open an issue that describes your set-up and the problem. I also welcome your input on how to make more explicit, standardised, and/or cleaner the code in the frontend and backend.
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
