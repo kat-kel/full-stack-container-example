@@ -1,6 +1,16 @@
 # Frontend
 
-This template comes with only one route: `http://localhost:3000/`, aka the index.
+This template comes with only one route: `http://localhost:3000/`, aka the index or home page.
+
+## Table of Contents
+
+- [Explanation](#explanation)
+- [Installation](#installation)
+- [Run client](#run)
+- [Testing](#testing)
+- [Linting](#linting)
+
+## Explanation
 
 When the page loads, it tries to load data from the API template's only endpoint, `http://localhost:8000/`. If you're running this frontend while also running the backend, the page should load correctly and you should see the data rendered in a grid.
 
@@ -9,19 +19,16 @@ To demonstrate how this template is requesting data from the backend, and what h
 ![Gif of screenshot of index page](../img/frontend.gif)
 
 
-## First-time set-up
+## Installation
 
-Install the node modules with `npm install`.
+Install the node modules with `npm i`.
 
 ```console
-$ npm install
-(node:10483) ExperimentalWarning: CommonJS module ... using require().
-Support for loading ES Module in require() is an experimental feature and might change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
+$ npm i
 
-added 446 packages, and audited 447 packages in 7s
+added 518 packages, and audited 519 packages in 43s
 
-155 packages are looking for funding
+168 packages are looking for funding
   run `npm fund` for details
 
 found 0 vulnerabilities
@@ -45,4 +52,40 @@ $ npm run dev
 
  ✓ Starting...
  ✓ Ready in 1323ms
+```
+
+## Testing
+
+```console
+$ npm run test
+
+> frontend@0.1.0 test
+> vitest
+
+
+ DEV  v3.0.9 /home/user/Dev/full-stack-container-example/frontend
+
+ ✓ src/__tests__/components/singers.test.tsx (1 test) 92ms
+   ✓ Render singer metadata card
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  19:48:35
+   Duration  244ms
+
+ PASS  Waiting for file changes...
+       press h to show help, press q to quit
+```
+
+## Linting
+
+Use ESLint to check for syntactic warnings or errors.
+
+```console
+$ npm run lint
+
+> frontend@0.1.0 lint
+> next lint
+
+✔ No ESLint warnings or errors
 ```
