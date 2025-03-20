@@ -197,7 +197,7 @@ In order to install the modules, you must have the following installed globally 
 Finally, from inside the [`frontend`](./frontend/) directory, where the [`package.json`](./frontend/package.json) file is, install the frontend's `node` modules with the following command:
 
 ```shell
-$ npm install
+$ npm i
 ```
 
 ##### Development
