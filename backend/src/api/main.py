@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.database import DB
+from src.api.database import DB
 
 # Connect to an in-memory DuckDB database
 db = DB()

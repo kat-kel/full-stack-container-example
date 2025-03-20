@@ -15,6 +15,12 @@ dependencies = [
     "duckdb >= 1.2.1"
 ]
 
+[project.scripts]
+api = "src.__main__:cli"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src", "tests"]
+
 [tool.pytest.ini_options]
 addopts = [
     "--import-mode=importlib",
