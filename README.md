@@ -141,6 +141,8 @@ Gracefully stopping... (press Ctrl+C again to force)
 
 #### Backend
 
+[Go to backend.](./backend/)
+
 The backend's REST API is built with [`FastAPI`](https://fastapi.tiangolo.com/) in `Python`.
 
 To begin developping the template and adding your own [endpoints](https://fastapi.tiangolo.com/tutorial/path-params/), data sources, etc., you'll first need to set up a virtual `Python` environment using version 3.12 or greater. Then, install the backend as a package with `pip install -e .`.
@@ -175,6 +177,8 @@ $ fastapi dev src/api/main.py --port 8000
 By running your backend app with the development server (`fastapi dev`), changes you make and save in the Python modules ([`src/api/`](./backend/src/api/)) will be applied as the application automatically reloads.
 
 #### Frontend
+
+[Go to frontend.](./frontend/)
 
 ##### Installation
 
