@@ -18,6 +18,9 @@ dependencies = [
 [project.scripts]
 api = "src.__main__:cli"
 
+[project.optional-dependencies]
+dev = ["black>=24.1.0", "isort>=5.13.0", "pytest"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src", "tests"]
 
